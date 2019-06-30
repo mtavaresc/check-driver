@@ -34,7 +34,8 @@ def check_driver():
         lr = get('{url}/LATEST_RELEASE'.format(url=base_url))
         last_version = lr.text
         download_file('{url}/{lv}/chromedriver_{os}.zip'.format(url=base_url, lv=last_version, os=os))
-        sleep(5)
+        while not glob('*.zip'):
+            sleep(1)
         unzip('chromedriver_{}.zip'.format(os))
 
 
